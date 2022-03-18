@@ -13,7 +13,7 @@ import (
 
 type GetOrderByOrderNumberEntity struct {
 	OrderNumber string
-	*gqttpl.DataVolumeMap
+	gqttpl.DataVolumeMap
 }
 
 func TestGetCURLRow(t *testing.T) {
@@ -27,15 +27,8 @@ func TestGetCURLRow(t *testing.T) {
 	// data := map[string]interface{}{
 	// 	"OrderNumber": "1234354",
 	// }
-	data := GetOrderByOrderNumberEntity{
-		OrderNumber:   "1234354",
-		DataVolumeMap: &gqttpl.DataVolumeMap{},
-	}
-	data.SetValue("a", "a")
-	dataI := interface{}(data)
-	_, ok := dataI.(gqttpl.DataVolumeInterface)
-	if !ok {
-		panic("not implement dataVolumeInterface")
+	data := &GetOrderByOrderNumberEntity{
+		OrderNumber: "1234354",
 	}
 
 	curlRow, err := repo.GetCURL(tplName, data)
