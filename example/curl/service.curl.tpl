@@ -1,5 +1,4 @@
 {{define "_bodyGetOrderByOrderNumber"}}
-{{- $serviceId:="110001"}}
 {
     "_head":{
         "_interface":"getOrderInfo",
@@ -8,7 +7,7 @@
         "_version":"0.01",
         "_timestamps":"{{timestampSecond}}",
         "_invokeId":"dispatch_order_{{xid}}",
-        "_callerServiceId":"{{$serviceId}}",
+        "_callerServiceId":"{{.ServiceId}}",
         "_groupNo":"1"
     },
     "_param":{
@@ -28,8 +27,11 @@
 {{- $body:=jsonCompact (getBody .)}}
 POST http://ordserver.huishoubao.com/order_center/getOrderInfo HTTP/1.1
 Content-Type: application/json
-HSB-OPENAPI-CALLERSERVICEID: {{$serviceId}}
-HSB-OPENAPI-SIGNATURE: {{getMD5LOWER  $body "_" $secretKey}}
+HSB-OPENAPI-CALLERSERVICEID: {{.ServiceId}}
+HSB-OPENAPI-SIGNATURE: {{getMD5LOWER  $body "_" .SecretKey}}
+
+
+
 
 {{$body}}
 {{end}}

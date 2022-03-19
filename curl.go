@@ -111,7 +111,7 @@ func (r *RepositoryCURL) GetCURLByTplEntity(tplEntity gqttpl.TplEntityInterface)
 
 func (r *RepositoryCURL) GetCURL(fullname string, data interface{}) (curlRow *CURLRow, err error) {
 
-	if dataVolume, ok := gqttpl.Interface2DataVolume(data); ok {
+	if dataVolume, ok := gqttpl.Interface2DataVolume(&data); ok {
 		namespace, name := gqttpl.SplitFullname(fullname)
 		bodyName := fmt.Sprintf("%s%s", BodyTemplateNamePrefix, name)
 		bodyFullname := gqttpl.SpellFullname(namespace, bodyName)
