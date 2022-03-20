@@ -8,11 +8,8 @@ import (
 func CURLCMD(curlRow *CURLRow) (cmd string) {
 	r := curlRow.RequestData
 	hArr := make([]string, 0)
-	for k, v := range r.Headers {
-		if strings.ToLower(k) == "content-length" {
-			continue
-		}
-		head := fmt.Sprintf("-H '%s: %v'", k, v)
+	for k, v := range r.Header {
+		head := fmt.Sprintf("-H '%s: %v'", k, strings.Join(v, " "))
 		hArr = append(hArr, head)
 	}
 	headers := strings.Join(hArr, " ")

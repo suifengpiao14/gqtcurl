@@ -34,11 +34,11 @@ func NewRepositoryCRUL() *RepositoryCURL {
 }
 
 type RequestData struct {
-	URL     string                 `json:"url"`
-	Method  string                 `json:"method"`
-	Headers map[string]interface{} `json:"headers"`
-	Cookies []*http.Cookie         `json:"cookies"`
-	Body    string                 `json:"body"`
+	URL     string         `json:"url"`
+	Method  string         `json:"method"`
+	Header  http.Header    `json:"header"`
+	Cookies []*http.Cookie `json:"cookies"`
+	Body    string         `json:"body"`
 }
 
 var LeftDelim = "{{"
@@ -194,17 +194,11 @@ func Request2RequestData(req *http.Request) (requestData *RequestData, err error
 	if err != nil {
 		return
 	}
-	headerMap := make(map[string]interface{})
-	for key, header := range req.Header {
-		if strings.ToLower(key) == "Content-Length" { // 实际请求需要重新计算长度
-			continue
-		}
-		headerMap[key] = header[0]
-	}
+	req.Header.Del("Content-Length")
 	requestData = &RequestData{
 		URL:     req.URL.String(),
 		Method:  req.Method,
-		Headers: headerMap,
+		Header:  req.Header,
 		Cookies: req.Cookies(),
 		Body:    string(bodyByte),
 	}
