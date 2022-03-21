@@ -21,12 +21,12 @@ const (
 var BodyTemplateNamePrefix = "_body"
 var DataVolumeMapBodyKey = "_body"
 
-// RepositoryCURL stores SQL templates.
+// RepositoryCURL stores CURL templates.
 type RepositoryCURL struct {
 	templates map[string]*template.Template // namespace: template
 }
 
-// NewRepositorySQL create a new Repository.
+// NewRepositoryCRUL create a new Repository.
 func NewRepositoryCRUL() *RepositoryCURL {
 	return &RepositoryCURL{
 		templates: make(map[string]*template.Template),
@@ -65,7 +65,7 @@ func (r *RepositoryCURL) AddByDir(root string, funcMap template.FuncMap) (err er
 }
 
 func (r *RepositoryCURL) AddByFS(fsys fs.FS, root string, funcMap template.FuncMap) (err error) {
-	r.templates, err = gqttpl.AddTemplateByFS(fsys, root, gqttpl.SQLNamespaceSuffix, funcMap, LeftDelim, RightDelim)
+	r.templates, err = gqttpl.AddTemplateByFS(fsys, root, gqttpl.CURLNamespaceSuffix, funcMap, LeftDelim, RightDelim)
 	if err != nil {
 		return
 	}
@@ -87,7 +87,7 @@ func (r *RepositoryCURL) GetCURLRowByTplEntity(t TplEntity) (curlRow *CURLRow, e
 	return r.GetCURL(t.TplName(), t)
 }
 
-// GetSQLByTplEntityRef 支持只返回error 函数签名
+// GetCURLRowByTplEntityRef 支持只返回error 函数签名
 func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t TplEntity, curlRow *CURLRow) (err error) {
 	curlRow1, err := r.GetCURLRowByTplEntity(t)
 	if err != nil {

@@ -5,7 +5,10 @@ go 1.16
 require (
 	github.com/pkg/errors v0.9.1
 	github.com/rs/xid v1.3.0
-	github.com/suifengpiao14/gqt/v2 v2.0.0-20220317033919-a60f541224d0
+	github.com/suifengpiao14/gqt/v2 v2.0.0-20220319020828-30e8a3a5d03e
+	goa.design/goa/v3 v3.7.0 // indirect
+	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
+	gorm.io/gorm v1.23.3 // indirect
 )
 
-replace github.com/suifengpiao14/gqt/v2 => /Users/admin/Documents/go/gqt
+// replace github.com/suifengpiao14/gqt/v2 => /Users/admin/Documents/go/gqt
