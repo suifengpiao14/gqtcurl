@@ -21,7 +21,7 @@ type GetOrderByOrderNumberEntity struct {
 
 func TestGetCURLRow(t *testing.T) {
 
-	repo := NewRepositoryCRUL()
+	repo := NewRepositoryCURL()
 	err := repo.AddByDir("example", TemplatefuncMap)
 	if err != nil {
 		panic(err)

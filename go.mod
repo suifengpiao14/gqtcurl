@@ -12,3 +12,4 @@ require (
 )
 
 // replace github.com/suifengpiao14/gqt/v2 => /Users/admin/Documents/go/gqt
+replace github.com/suifengpiao14/gqt/v2 => D:\\go\\gqt

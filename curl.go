@@ -27,7 +27,7 @@ type RepositoryCURL struct {
 }
 
 // NewRepositoryCRUL create a new Repository.
-func NewRepositoryCRUL() *RepositoryCURL {
+func NewRepositoryCURL() *RepositoryCURL {
 	return &RepositoryCURL{
 		templates: make(map[string]*template.Template),
 	}
@@ -50,10 +50,6 @@ type CURLRow struct {
 	Arguments   interface{}
 	RequestData *RequestData
 	Response    interface{}
-}
-
-type TplEntity interface {
-	TplName() string
 }
 
 func (r *RepositoryCURL) AddByDir(root string, funcMap template.FuncMap) (err error) {
@@ -83,12 +79,12 @@ func (r *RepositoryCURL) AddByNamespace(namespace string, content string, funcMa
 }
 
 // 将模板名称，模板中的变量，封装到结构体中，使用结构体访问，避免拼写错误以及分散的硬编码，可以配合 gqttool 自动生成响应的结构体
-func (r *RepositoryCURL) GetCURLRowByTplEntity(t TplEntity) (curlRow *CURLRow, err error) {
+func (r *RepositoryCURL) GetCURLRowByTplEntity(t gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
 	return r.GetCURL(t.TplName(), t)
 }
 
 // GetCURLRowByTplEntityRef 支持只返回error 函数签名
-func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t TplEntity, curlRow *CURLRow) (err error) {
+func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t gqttpl.TplEntityInterface, curlRow *CURLRow) (err error) {
 	curlRow1, err := r.GetCURLRowByTplEntity(t)
 	if err != nil {
 		return err
@@ -109,23 +105,9 @@ func (r *RepositoryCURL) GetCURLByTplEntity(tplEntity gqttpl.TplEntityInterface)
 	return r.GetCURL(tplEntity.TplName(), tplEntity)
 }
 
-func (r *RepositoryCURL) GetCURL(fullname string, data interface{}) (curlRow *CURLRow, err error) {
-
-	if dataVolume, ok := gqttpl.Interface2DataVolume(&data); ok {
-		namespace, name := gqttpl.SplitFullname(fullname)
-		bodyName := fmt.Sprintf("%s%s", BodyTemplateNamePrefix, name)
-		bodyFullname := gqttpl.SpellFullname(namespace, bodyName)
-		bodyTplDefine, err := gqttpl.ExecuteTemplateTry(r.templates, bodyFullname, &data)
-		if err != nil {
-			return nil, err
-		}
-		if bodyTplDefine != nil {
-			dataVolume.SetValue(DataVolumeMapBodyKey, bodyTplDefine.Output)
-		}
-	}
-
+func (r *RepositoryCURL) GetCURL(fullname string, dataVolume gqttpl.DataVolumeInterface) (curlRow *CURLRow, err error) {
 	var tplDefine *gqttpl.TPLDefine
-	tplDefine, err = gqttpl.ExecuteTemplate(r.templates, fullname, data)
+	tplDefine, err = gqttpl.ExecuteTemplate(r.templates, fullname, dataVolume)
 	if err != nil {
 		return nil, err
 	}
