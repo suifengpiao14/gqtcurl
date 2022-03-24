@@ -16,7 +16,7 @@ type GetOrderByOrderNumberEntity struct {
 	ServiceId   string
 	SecretKey   string
 	Ma          *map[string]interface{}
-	*gqttpl.DataVolumeMap
+	*gqttpl.TplEmptyEntity
 }
 
 func TestGetCURLRow(t *testing.T) {
@@ -32,7 +32,7 @@ func TestGetCURLRow(t *testing.T) {
 	// 	"ServiceId":   "110001",
 	// 	"SecretKey":   "wwqCxg4e3OUzILDzdD957zuVH5iHRt4W",
 	// }
-	data := gqttpl.DataVolumeMap{
+	data := gqttpl.TplEmptyEntity{
 		"OrderNumber": "1234354",
 		"ServiceId":   "110001",
 		"SecretKey":   "wwqCxg4e3OUzILDzdD957zuVH5iHRt4W",
@@ -48,7 +48,7 @@ func TestGetCURLRow(t *testing.T) {
 		panic(err)
 	}
 	args := curlRow.Arguments
-	dataVolumeMap, _ := args.(*gqttpl.DataVolumeMap)
+	dataVolumeMap, _ := args.(*gqttpl.TplEmptyEntity)
 	body, _ := dataVolumeMap.GetValue(BodyTemplateNamePrefix)
 	bodyStr, _ := body.(string)
 	bodyStr1, err := JsonCompact(bodyStr)

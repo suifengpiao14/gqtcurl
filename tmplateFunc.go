@@ -8,7 +8,6 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/pkg/errors"
 	"github.com/rs/xid"
 	"github.com/suifengpiao14/gqt/v2"
 	"github.com/suifengpiao14/gqt/v2/gqttpl"
@@ -32,7 +31,6 @@ var TemplatefuncMap = template.FuncMap{
 	"getMD5LOWER":       GetMD5LOWER,
 	"jsonCompact":       JsonCompact,
 	"standardizeSpaces": gqttpl.StandardizeSpaces,
-	"getBody":           GetBody,
 }
 
 func GetMD5LOWER(s ...string) string {
@@ -95,25 +93,4 @@ func JsonCompact(src string) (out string, err error) {
 	out = buff.String()
 	return
 
-}
-
-func GetBody(data interface{}) (body string, err error) {
-
-	body = ""
-	dataVolume, ok := gqttpl.Interface2DataVolume(data)
-	if !ok {
-		err = errors.Errorf("func geBody only used for object who implement gqttpl.DataVolumeInterface")
-		return
-	}
-	bodyInterface, ok := dataVolume.GetValue(DataVolumeMapBodyKey)
-	if !ok {
-		err = errors.Errorf("not defined body template _bodyXXX[XXX is template define name] or not use ")
-		return
-	}
-	body, ok = bodyInterface.(string)
-	if !ok {
-		err = errors.Errorf(" body %#v can not convert to string", bodyInterface)
-	}
-
-	return
 }

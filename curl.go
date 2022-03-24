@@ -98,14 +98,14 @@ type DataInterface interface{}
 type DataWrap struct {
 	DataInterface
 	Body string
-	gqttpl.DataVolumeMap
+	gqttpl.TplEmptyEntity
 }
 
 func (r *RepositoryCURL) GetCURLByTplEntity(tplEntity gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
 	return r.GetCURL(tplEntity.TplName(), tplEntity)
 }
 
-func (r *RepositoryCURL) GetCURL(fullname string, dataVolume gqttpl.DataVolumeInterface) (curlRow *CURLRow, err error) {
+func (r *RepositoryCURL) GetCURL(fullname string, dataVolume gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
 	var tplDefine *gqttpl.TPLDefine
 	tplDefine, err = gqttpl.ExecuteTemplate(r.templates, fullname, dataVolume)
 	if err != nil {
