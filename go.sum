@@ -115,6 +115,8 @@ github.com/suifengpiao14/gqt/v2 v2.0.0-20220317033919-a60f541224d0 h1:Md1/fAQkY/
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220317033919-a60f541224d0/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220319020828-30e8a3a5d03e h1:xb+dQdiOX9j6G+Nh1DzVg9/xGU5JdfroF0BsPEE6Sg8=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220319020828-30e8a3a5d03e/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017 h1:T/X+pZOgQPjhcLSPM9jWr36kJ3PjUs+yDU6N1WXeXuU=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
 github.com/yuin/goldmark v1.4.1/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea h1:CyhwejzVGvZ3Q2PSbQ4NRRYn+ZWv5eS1vlaEusT+bAI=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea/go.mod h1:eNr558nEUjP8acGw8FFjTeWvSgU1stO7FAO6eknhHe4=
