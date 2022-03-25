@@ -84,21 +84,13 @@ func (r *RepositoryCURL) GetCURLRowByTplEntity(t gqttpl.TplEntityInterface) (cur
 }
 
 // GetCURLRowByTplEntityRef 支持只返回error 函数签名
-func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t gqttpl.TplEntityInterface, curlRow *CURLRow) (err error) {
-	curlRow1, err := r.GetCURLRowByTplEntity(t)
+func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t gqttpl.TplEntityInterface, curlRowRef *CURLRow) (err error) {
+	curlRow, err := r.GetCURLRowByTplEntity(t)
 	if err != nil {
 		return err
 	}
-	*curlRow = *curlRow1
+	*curlRowRef = *curlRow
 	return
-}
-
-type DataInterface interface{}
-
-type DataWrap struct {
-	DataInterface
-	Body string
-	gqttpl.TplEmptyEntity
 }
 
 func (r *RepositoryCURL) GetCURLByTplEntity(tplEntity gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
