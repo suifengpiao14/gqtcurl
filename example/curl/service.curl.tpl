@@ -1,4 +1,4 @@
-{{define "_bodyGetOrderByOrderNumber"}}
+{{define "GetOrderByOrderNumberBody"}}
 {
     "_head":{
         "_interface":"getOrderInfo",
@@ -24,7 +24,7 @@
 {{define "GetOrderByOrderNumber"}}
 {{- $serviceId:="110001"}}
 {{- $secretKey :="wwqCxg4e3OUzILDzdD957zuVH5iHRt4W"}}
-{{- $body:=jsonCompact (getBody .)}}
+{{- $body:=jsonCompact ( tplOutput . .GetOrderByOrderNumberBody ) -}}
 POST http://ordserver.huishoubao.com/order_center/getOrderInfo HTTP/1.1
 Content-Type: application/json
 HSB-OPENAPI-CALLERSERVICEID: {{.ServiceId}}
