@@ -31,6 +31,7 @@ var TemplatefuncMap = template.FuncMap{
 	"getMD5LOWER":       GetMD5LOWER,
 	"jsonCompact":       JsonCompact,
 	"standardizeSpaces": gqttpl.StandardizeSpaces,
+	"tplOutput":         gqttpl.TplOutput,
 }
 
 func GetMD5LOWER(s ...string) string {
