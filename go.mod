@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/pkg/errors v0.9.1
 	github.com/rs/xid v1.3.0
-	github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017
+	github.com/suifengpiao14/gqt/v2 v2.0.0-20220325022420-7413aa73f1c5
 	goa.design/goa/v3 v3.7.0 // indirect
 	golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 // indirect
 	gorm.io/gorm v1.23.3 // indirect

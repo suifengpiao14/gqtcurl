@@ -113,6 +113,8 @@ github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5Cc
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017 h1:T/X+pZOgQPjhcLSPM9jWr36kJ3PjUs+yDU6N1WXeXuU=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220325022420-7413aa73f1c5 h1:U4LO7NFLRtSDbbFsj/Zd6UiKM+YllS23xUehE38RlAw=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220325022420-7413aa73f1c5/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
 github.com/yuin/goldmark v1.4.1/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea h1:CyhwejzVGvZ3Q2PSbQ4NRRYn+ZWv5eS1vlaEusT+bAI=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea/go.mod h1:eNr558nEUjP8acGw8FFjTeWvSgU1stO7FAO6eknhHe4=
