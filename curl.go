@@ -14,10 +14,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-const (
-	EOF = "\n"
-)
-
 var BodyTemplateNamePrefix = "_body"
 var DataVolumeMapBodyKey = "_body"
 
@@ -41,9 +37,6 @@ type RequestData struct {
 	Body    string         `json:"body"`
 }
 
-var LeftDelim = "{{"
-var RightDelim = "}}"
-
 type CURLRow struct {
 	Name        string
 	Namespace   string
@@ -53,7 +46,7 @@ type CURLRow struct {
 }
 
 func (r *RepositoryCURL) AddByDir(root string, funcMap template.FuncMap) (err error) {
-	r.templates, err = gqttpl.AddTemplateByDir(root, gqttpl.CURLNamespaceSuffix, funcMap, LeftDelim, RightDelim)
+	r.templates, err = gqttpl.AddTemplateByDir(root, gqttpl.CURLNamespaceSuffix, funcMap, gqttpl.LeftDelim, gqttpl.RightDelim)
 	if err != nil {
 		return
 	}
@@ -61,7 +54,7 @@ func (r *RepositoryCURL) AddByDir(root string, funcMap template.FuncMap) (err er
 }
 
 func (r *RepositoryCURL) AddByFS(fsys fs.FS, root string, funcMap template.FuncMap) (err error) {
-	r.templates, err = gqttpl.AddTemplateByFS(fsys, root, gqttpl.CURLNamespaceSuffix, funcMap, LeftDelim, RightDelim)
+	r.templates, err = gqttpl.AddTemplateByFS(fsys, root, gqttpl.CURLNamespaceSuffix, funcMap, gqttpl.LeftDelim, gqttpl.RightDelim)
 	if err != nil {
 		return
 	}
@@ -69,7 +62,7 @@ func (r *RepositoryCURL) AddByFS(fsys fs.FS, root string, funcMap template.FuncM
 }
 
 func (r *RepositoryCURL) AddByNamespace(namespace string, content string, funcMap template.FuncMap) (err error) {
-	t, err := gqttpl.AddTemplateByStr(namespace, content, funcMap, LeftDelim, RightDelim)
+	t, err := gqttpl.AddTemplateByStr(namespace, content, funcMap, gqttpl.LeftDelim, gqttpl.RightDelim)
 	if err != nil {
 		err = errors.WithStack(err)
 		return err
@@ -126,24 +119,23 @@ func (r *RepositoryCURL) TplDefine2CURLRow(tplDefine *gqttpl.TPLDefine) (curlRow
 }
 
 func (r *RepositoryCURL) ReadRequest(httpRaw string) (req *http.Request, err error) {
-	httpRaw = strings.Trim(httpRaw, "\r\n\t\v\f ") // （删除前后空格，对于没有body 内容的请求，后面再加上必要的换行）
+	httpRaw = gqttpl.TrimSpaces(httpRaw) // （删除前后空格，对于没有body 内容的请求，后面再加上必要的换行）
 	if httpRaw == "" {
 		err = errors.Errorf("http raw not allow empty")
 		return nil, err
 	}
 	httpRaw = strings.ReplaceAll(httpRaw, "\r\n", "\n") // 统一换行符
-	divider := EOF + EOF                                // 连续2个换行符表示body开始
 	// 插入body长度头部信息
-	bodyIndex := strings.Index(httpRaw, divider)
+	bodyIndex := strings.Index(httpRaw, gqttpl.HTTP_HEAD_BODY_DELIM)
 	formatHttpRaw := httpRaw
 	if bodyIndex > 0 {
 		headerRaw := strings.TrimSpace(httpRaw[:bodyIndex])
-		bodyRaw := httpRaw[bodyIndex+len(divider):]
+		bodyRaw := httpRaw[bodyIndex+len(gqttpl.HTTP_HEAD_BODY_DELIM):]
 		bodyLen := len(bodyRaw)
-		formatHttpRaw = fmt.Sprintf("%s%sContent-Length: %d%s%s", headerRaw, EOF, bodyLen, divider, bodyRaw)
+		formatHttpRaw = fmt.Sprintf("%s%sContent-Length: %d%s%s", headerRaw, gqttpl.EOF, bodyLen, gqttpl.HTTP_HEAD_BODY_DELIM, bodyRaw)
 	} else {
 		// 如果没有请求体，则原始字符后面必须保留一个换行符
-		formatHttpRaw = fmt.Sprintf("%s%s", formatHttpRaw, divider)
+		formatHttpRaw = fmt.Sprintf("%s%s", formatHttpRaw, gqttpl.HTTP_HEAD_BODY_DELIM)
 	}
 
 	buf := bufio.NewReader(strings.NewReader(formatHttpRaw))

@@ -115,6 +115,8 @@ github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017 h1:T/X+pZOgQP
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220324032337-a3142e94f017/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220325022420-7413aa73f1c5 h1:U4LO7NFLRtSDbbFsj/Zd6UiKM+YllS23xUehE38RlAw=
 github.com/suifengpiao14/gqt/v2 v2.0.0-20220325022420-7413aa73f1c5/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220328075442-fe93d98959a9 h1:Ch46Ow1n15MVpv9XoFXgiRhV1ck7qN638q19X1+xhhg=
+github.com/suifengpiao14/gqt/v2 v2.0.0-20220328075442-fe93d98959a9/go.mod h1:4najawt9TpKzKkYkbLOX5QQBH53hoiQBCbyreOHI47w=
 github.com/yuin/goldmark v1.4.1/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea h1:CyhwejzVGvZ3Q2PSbQ4NRRYn+ZWv5eS1vlaEusT+bAI=
 github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea/go.mod h1:eNr558nEUjP8acGw8FFjTeWvSgU1stO7FAO6eknhHe4=
@@ -169,6 +171,8 @@ golang.org/x/sys v0.0.0-20220310020820-b874c991c1a5/go.mod h1:oPkhp1MJrh7nUepCBc
 golang.org/x/sys v0.0.0-20220317061510-51cd9980dadf/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8 h1:OH54vjqzRWmbJ62fjuhxy7AxFFgoHN0/DPc/UrL8cAs=
 golang.org/x/sys v0.0.0-20220319134239-a9b59b0215f8/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20220327210214-530d0810a4d0 h1:G6WAvvcMaaFYQhMbC0L5ZWNExEcJ3j3yFTxx4mwOHtM=
+golang.org/x/sys v0.0.0-20220327210214-530d0810a4d0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/term v0.0.0-20210927222741-03fcf44c2211/go.mod h1:jbD1KX2456YbFQfuXm/mYQcufACuNUgVhRMnK/tPxf8=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
