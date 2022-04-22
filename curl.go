@@ -71,14 +71,9 @@ func (r *RepositoryCURL) AddByNamespace(namespace string, content string, funcMa
 	return
 }
 
-// 将模板名称，模板中的变量，封装到结构体中，使用结构体访问，避免拼写错误以及分散的硬编码，可以配合 gqttool 自动生成响应的结构体
-func (r *RepositoryCURL) GetCURLRowByTplEntity(t gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
-	return r.GetCURL(t.TplName(), t)
-}
-
-// GetCURLRowByTplEntityRef 支持只返回error 函数签名
-func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t gqttpl.TplEntityInterface, curlRowRef *CURLRow) (err error) {
-	curlRow, err := r.GetCURLRowByTplEntity(t)
+// GetCURLByTplEntityRef 支持只返回error 函数签名
+func (r *RepositoryCURL) GetCURLByTplEntityRef(t gqttpl.TplEntityInterface, curlRowRef *CURLRow) (err error) {
+	curlRow, err := r.GetCURLByTplEntity(t)
 	if err != nil {
 		return err
 	}
@@ -86,8 +81,8 @@ func (r *RepositoryCURL) GetCURLRowByTplEntityRef(t gqttpl.TplEntityInterface, c
 	return
 }
 
-func (r *RepositoryCURL) GetCURLByTplEntity(tplEntity gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
-	return r.GetCURL(tplEntity.TplName(), tplEntity)
+func (r *RepositoryCURL) GetCURLByTplEntity(t gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
+	return r.GetCURL(t.TplName(), t)
 }
 
 func (r *RepositoryCURL) GetCURL(fullname string, dataVolume gqttpl.TplEntityInterface) (curlRow *CURLRow, err error) {
